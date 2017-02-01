@@ -1,0 +1,42 @@
+---
+- name: Install required packages
+  yum: >
+    name={{ item }}
+    state=installed
+  with_items:
+    - python-setuptools
+    - python2-pip
+
+- name: Install supervisor via pip
+  pip: >
+    name=supervisor
+    state=present
+
+- name: Create supervisord user
+  user: >
+    name=supervisord
+    createhome=no
+    state=present
+
+- name: Deploy supervisord configuration file
+  template: >
+    src=supervisord.conf.tpl
+    dest=/etc/supervisord.conf
+    owner=root
+    group=root
+    mode=0644
+
+- name: Install supervisord systemd script
+  template: >
+    src=supervisord.service.tpl
+    dest=/etc/systemd/system/supervisord.service
+    owner=root
+    group=root
+    mode=0755
+
+- name: Start and enable supervisord daemon
+  systemd: >
+    name=supervisord
+    state=started
+    enabled=yes
+    daemon_reload=yes

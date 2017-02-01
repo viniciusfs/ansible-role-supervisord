@@ -1,0 +1,8 @@
+---
+supervisord_socket_file: "/var/run/supervisord/supervisord.sock"
+supervisord_bind_address: "0.0.0.0"
+supervisord_http_port: "9001"
+supervisord_logfile: "/var/log/supervidord.log"
+supervisord_loglevel: "info"
+supervisord_user: "supervisor"
+supervisord_password: "master"

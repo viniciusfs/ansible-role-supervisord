@@ -1,0 +1,3 @@
+---
+- name: viniciusfs.epel
+  src: https://github.com/viniciusfs/ansible-role-epel.git
