@@ -1,8 +1,9 @@
 ---
-supervisord_socket_file: "/var/run/supervisord/supervisord.sock"
+supervisord_user: "supervisord"
+supervisord_user_group: "supervisord"
+supervisord_config_dir: "/etc/supervisor"
+supervisord_log_dir: "/var/log/supervisord"
+supervisord_log_level: "info"
 supervisord_bind_address: "0.0.0.0"
 supervisord_http_port: "9001"
-supervisord_logfile: "/var/log/supervidord.log"
-supervisord_loglevel: "info"
-supervisord_user: "supervisor"
 supervisord_password: "master"

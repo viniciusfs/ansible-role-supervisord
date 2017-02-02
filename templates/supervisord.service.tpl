@@ -3,7 +3,7 @@ Description=Supervisor daemon
 
 [Service]
 Type=forking
-ExecStart=/bin/supervisord
+ExecStart=/bin/supervisord -c {{ supervisord_config_dir }}/supervisord.conf
 ExecStop=/bin/supervisorctl $OPTIONS shutdown
 ExecReload=/bin/supervisorctl $OPTIONS reload
 KillMode=process

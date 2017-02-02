@@ -12,16 +12,41 @@
     name=supervisor
     state=present
 
+- name: Create supervisord user group
+  group: >
+    name={{ supervisord_user_group }}
+    state=present
+
 - name: Create supervisord user
   user: >
-    name=supervisord
+    name={{ supervisord_user }}
+    group={{ supervisord_user_group }}
     createhome=no
     state=present
+
+- name: Create supervisord log directory
+  file: >
+    path={{ supervisord_log_dir }}
+    state=directory
+    owner={{ supervisord_user }}
+    group={{ supervisord_user_group }}
+    mode=0775
+
+- name: Create supervisord configuration directories
+  file: >
+    path={{ item }}
+    state=directory
+    owner={{ supervisord_user }}
+    group={{ supervisord_user_group }}
+    mode=0775
+  with_items:
+    - "{{ supervisord_config_dir }}"
+    - "{{ supervisord_config_dir }}/conf.d"
 
 - name: Deploy supervisord configuration file
   template: >
     src=supervisord.conf.tpl
-    dest=/etc/supervisord.conf
+    dest={{ supervisord_config_dir }}/supervisord.conf
     owner=root
     group=root
     mode=0644

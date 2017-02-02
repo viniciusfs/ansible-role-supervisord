@@ -3,7 +3,7 @@
 ;
 
 [unix_http_server]
-file={{ supervisord_socket_file }}
+file=/var/run/supervisord.sock
 username={{ supervisord_user }}
 password={{ supervisord_password }}
 
@@ -11,19 +11,18 @@ password={{ supervisord_password }}
 port={{ supervisord_bind_address }}:{{ supervisord_http_port }}
 
 [supervisord]
-logfile={{ supervisord_logfile }}
+logfile={{ supervisord_log_dir }}/supervisord.log
 logfile_maxbytes=0
-loglevel={{ supervisord_loglevel }}
+loglevel={{ supervisord_log_level }}
 pidfile=/var/run/supervisord.pid
-user=supervisord
 
 [rpcinterface:supervisor]
 supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
 
 [supervisorctl]
-serverurl=unix://{{ supervisord_socket_file }}
+serverurl=unix:///var/run/supervisord.sock
 username={{ supervisord_user }}
 password={{ supervisord_password }}
 
 [include]
-files = supervisord.d/*.ini
+files = {{ supervisord_config_dir }}/conf.d/*.ini
