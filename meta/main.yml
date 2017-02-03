@@ -13,5 +13,5 @@ galaxy_info:
     - system
 
 dependencies:
-  - name: viniciusfs.epel
-    src: https://github.com/viniciusfs/ansible-role-epel.git
+  - name: epel
+    src: git+http://git.appi.corp.local/devops/ansible-role-epel.git

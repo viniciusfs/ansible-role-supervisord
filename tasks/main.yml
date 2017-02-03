@@ -4,7 +4,6 @@
     name={{ item }}
     state=installed
   with_items:
-    - python-setuptools
     - python2-pip
 
 - name: Install supervisor via pip
