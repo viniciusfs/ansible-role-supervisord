@@ -1,4 +1,3 @@
 ---
-- name: epel
-  src: git+http://git.appi.corp.local/devops/ansible-role-epel.git
-
+- name: viniciusfs.epel
+  src: https://github.com/viniciusfs/ansible-role-epel
