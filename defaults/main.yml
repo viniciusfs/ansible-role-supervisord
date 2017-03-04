@@ -7,3 +7,4 @@ supervisord_log_level: "info"
 supervisord_bind_address: "0.0.0.0"
 supervisord_http_port: "9001"
 supervisord_password: "master"
+supervisord_programs: []

@@ -58,6 +58,16 @@
     group=root
     mode=0755
 
+- name: Deploy program configuration files
+  template: >
+    src=app.ini.tpl
+    dest="{{ supervisord_config_dir }}/conf.d/{{ item.name }}.ini"
+    owner=root
+    group=root
+    mode=0644
+  with_items:
+    - "{{ supervisord_programs }}"
+
 - name: Start and enable supervisord daemon
   systemd: >
     name=supervisord
